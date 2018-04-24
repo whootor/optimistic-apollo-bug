@@ -9,6 +9,7 @@ import {
 } from 'apollo-cache-inmemory'
 
 import Bug from './Bug'
+import Deck from './Deck'
 
 const cache = new InMemoryCache()
 
@@ -20,11 +21,16 @@ const client = new ApolloClient({
 })
 
 class App extends Component {
+  state = {showDeck: false}
+
   render() {
+    const {showDeck} = this.state
     return (
       <ApolloProvider client={client}>
         <div className="App">
           <Bug />
+          <button onClick={() => this.setState({showDeck: !showDeck})}>Toggle Deck</button>
+          {showDeck && <Deck />}
         </div>
       </ApolloProvider>
     );

@@ -15,6 +15,7 @@ const def = gql`
   type Bug { 
     id: ID
     name: String
+    image: String
   }
   schema {
     query: Query
@@ -34,16 +35,19 @@ const schema = makeExecutableSchema({
         return await new Promise((resolve) => {
           setTimeout(() => resolve({
             id: '2039t0923t0923tj0',
-            name: 'Fixed Ledyba'
+            name: 'Fixed Ledyba',
+            image: 'https://pre00.deviantart.net/3d64/th/pre/f/2016/054/5/9/165_by_tamtamdi-d9swwpn.jpg'
           }), 1000)
         })
       }
     },
     Query: {
-      bug: (_, query) => {
+      bug: async (_, query) => {
+        await new Promise(resolve => setTimeout(resolve, 1000))
         return {
           id: '2039t0923t0923tj0',
-          name: 'Broken Ledyba'
+          name: 'Broken Ledyba',
+          image: 'http://static.pokemonpets.com/images/monsters-images-300-300/2165-Shiny-Ledyba.png'
         }
       }
     },

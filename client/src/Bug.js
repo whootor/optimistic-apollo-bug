@@ -16,7 +16,8 @@ const mutation = gql`
   mutation {
     fixBug {
       id,
-      name
+      name,
+      image
     }
   }
 `
@@ -29,7 +30,9 @@ class Bug extends Component {
         fixBug: {
           ...this.props.data.bug,
           // __typeName: 'Bug',
-          name: 'Optimistic Ledyba'
+          name: 'Optimistic Ledyba',
+          // Fetching the exact same fields as in the query fixes the problem
+          // image: 'https://media.giphy.com/media/y1wTM9fKveMy4/giphy.gif'
         }
       }
     })
